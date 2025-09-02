@@ -1,6 +1,7 @@
 
 
 echo "Press 'q' to exit zen generator."
+play -q "water.wav" repeat 1000000000  &
 while true; do
 minmax=$(( (RANDOM % 9) + 0 ))
 bamboo=$(find /bamboo -type f | shuf -n 1)
