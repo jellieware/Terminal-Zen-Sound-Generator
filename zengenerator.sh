@@ -1,7 +1,8 @@
 
 
 echo "Press 'q' to exit zen generator."
-play -q "water.wav" repeat 1000000000  &
+play -q "water.wav" repeat 1000000000 & play -q "rain.wav" vol "0.4" repeat 1000000000 &
+tibetan=0
 while true; do
 minmax=$(( (RANDOM % 9) + 0 ))
 bamboo=$(find /bamboo -type f | shuf -n 1)
@@ -10,6 +11,12 @@ sleepdur+=$minmax
 play -q "$bamboo" vol "$sleepdur" &
 sleep $sleepdur
 sleepdur=""
+((tibetan++))
+if [[ $tibetan -gt 25 ]]; then
+bowls=$(find /tibetan -type f | shuf -n 1)
+play -q "$bowls" &
+tibetan=0
+fi
 read -n 1 -t 0.1 input
     if [[ $input = "q" ]] || [[ $input = "Q" ]]; then
         echo "Exiting loop."
